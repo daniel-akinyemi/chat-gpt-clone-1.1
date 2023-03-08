@@ -4,6 +4,7 @@ import { SessionProvider } from "components/SessionProvider";
 import SideBar from "components/SideBar";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import Login from "components/Login";
+import ClientProvider from "components/ClientProvider";
 
 
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
             </div>
 
             {/* ClientProvider - Notification (Toastify) */}
+            <ClientProvider/>
 
             <div className="bg-[#343541] flex-1">{children}</div>
           </div>

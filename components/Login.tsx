@@ -1,13 +1,14 @@
 'use client'
 import { signIn } from "next-auth/react"
 import Image from "next/image"
+import chatGptIcon from '../public/chatgpt-icon.svg'
 
 
 const Login = () => {
   return (
     <div className="bg-[#11A37F] h-screen flex flex-col items-center justify-center text-center">
         <Image
-        src="https://links.papareact.com/216"
+        src={chatGptIcon}
         height={300}
         width={300}
         alt='logo'
