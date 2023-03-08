@@ -5,7 +5,7 @@ type Props = {
 };
 
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import { db } from "firebase";
+import { db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
@@ -21,6 +21,7 @@ const ChatInput = ({ chatId }: Props) => {
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
     if (!prompt)return;
+
     const input = prompt.trim();
     setprompt('');
     const message: Message={
@@ -45,7 +46,7 @@ const ChatInput = ({ chatId }: Props) => {
           'Content-Type':'application/json'
         },
         body: JSON.stringify({
-          prompt:input, chatId, model, session
+          prompt:input, chatId, model, session,
         }),
 
       }).then(()=> {
