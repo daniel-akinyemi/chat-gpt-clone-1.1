@@ -4,19 +4,24 @@ type Props = {
   chatId: string;
 };
 
+import useSWR from 'swr'
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import ModelSelection from "./ModelSelection";
 
 const ChatInput = ({ chatId }: Props) => {
   const [prompt, setprompt] = useState("");
   const { data: session } = useSession();
 
-  // useSWR to get model
-  const model = 'text-davinci-003'
+  const {data:model } = useSWR('model',{
+    fallbackData: 'text-davinci-003'
+})
+
+
 
   const sendMessage = async (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
@@ -76,7 +81,9 @@ const ChatInput = ({ chatId }: Props) => {
           <PaperAirplaneIcon className="h-4 w-4 -rotate-45" />
         </button>
       </form>
-      <div>{/* Module selection */}</div>
+      <div className="md:hidden">
+      <ModelSelection/>
+      </div>
     </div>
   );
 };

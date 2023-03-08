@@ -5,6 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import {useCollection} from "react-firebase-hooks/firestore"
 import ChatRow from "./ChatRow";
 import NewChat from "./NewChat"
+import ModelSelection from "./ModelSelection";
 
 const SideBar = () => {
   const {data:session} = useSession();
@@ -20,14 +21,22 @@ const [chats, loading, error] = useCollection(
             <div>
                 {/* Newchat */}
                 <NewChat/>
-                <div>
-                    {/* Model Selection */}
-
+                <div className="hidden sm:inline">
+                  <ModelSelection/>
                 </div>
-                {/* Map through the chart rows */}
+                <div className="flex flex-col space-y-2 my-2">
+
+                  {loading &&(
+                    <div className="animate-pulse text-center text-white">
+                      <p>Loading Chats...</p>
+                    </div>
+                  )}
+                                  {/* Map through the chart rows */}
                 {chats?.docs.map(chat =>(
                   <ChatRow key={chat.id} id={chat.id}/>
                 ))}
+                </div>
+
             </div>
             
         </div>
