@@ -24,7 +24,7 @@ export default async function handler(
         return;
     }
 
-    const response = await query(prompt, chatId, model, session)
+    const response = await query(prompt, chatId, model)
 
     const message: Message = {
       text:response || "ChatGPT was unable to find an answer for that!",

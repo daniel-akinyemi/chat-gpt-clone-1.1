@@ -9,7 +9,7 @@ import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { toast } from "react-hot-toast";
 import ModelSelection from "./ModelSelection";
 
@@ -23,7 +23,7 @@ const ChatInput = ({ chatId }: Props) => {
 
 
 
-  const sendMessage = async (e: React.FormEvent<HTMLFormElement>)=>{
+  const sendMessage = async (e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
     if (!prompt)return;
 
