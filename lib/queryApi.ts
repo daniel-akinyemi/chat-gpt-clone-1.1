@@ -2,7 +2,7 @@ import openai from "./chatgpt";
 
 const query = async (prompt:string, model:string) =>{
     const res = await openai.createCompletion({
-        model:"text-davinci-003",
+        model,
         prompt,
         temperature:0.9,
         top_p:1,

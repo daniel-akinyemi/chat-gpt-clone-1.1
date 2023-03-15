@@ -13,7 +13,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
     const{prompt, chatId,
-      //  model,
+      model,
       session} = req.body;
 
     if(!prompt){
@@ -26,8 +26,7 @@ export default async function handler(
         return;
     }
 
-    const response = await query(prompt, chatId
-      // , model
+    const response = await query(prompt, model
       )
 
     const message: Message = {

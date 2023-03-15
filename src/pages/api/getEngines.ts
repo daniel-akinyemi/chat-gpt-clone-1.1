@@ -9,7 +9,7 @@ type Option ={
 
 type Data = {
     modelOptions: Option[];
-}
+} 
 
 export default async function handler(
     req:NextApiRequest,
@@ -22,7 +22,7 @@ export default async function handler(
         label:model.id,
     }));
 
-    res.status(200).json({
-        modelOptions,
-    })
+    // res.status(200).json({
+    //     modelOptions,
+    // });
 }
