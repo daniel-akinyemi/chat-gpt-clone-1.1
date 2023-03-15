@@ -26,7 +26,7 @@ export default async function handler(
         return;
     }
 
-    const response = await query(prompt, model
+    const response = await query(prompt, model, chatId
       )
 
     const message: Message = {
